@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lumx Salon Agra | Haircut, Balayage, Keratin & Bridal Makeup</title>
     <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <link rel="apple-touch-icon" href="/logo.svg" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#1C1917" />
+    <link rel="canonical" href="https://luxm-salon-agra.vercel.app/" />
 
     <!-- SEO Meta Tags -->
     <meta
@@ -17,13 +21,20 @@
     />
     <meta
       name="keywords"
-      content="Lumx Salon Agra, Best Salon Agra, Hair Salon Agra, Beauty Salon Agra, Unisex Salon Agra, Women's Haircut Agra, Men's Haircut Agra, Balayage Agra, Hair Highlights Agra, Hair Color Agra, Keratin Treatment Agra, Hair Smoothening Agra, Bridal Makeup Agra, Luxury Salon Agra, Professional Hair Stylist Agra"
+      content="Lumx Salon Agra, Best Salon Agra, Hair Salon Agra, Beauty Salon Agra, Unisex Salon Agra, Women's Haircut Agra, Men's Haircut Agra, Balayage Agra, Hair Highlights Agra, Hair Color Agra, Keratin Treatment Agra, Hair Spa Agra, Facial Agra, Hair Smoothening Agra, Bridal Makeup Agra, Luxury Salon Agra, Professional Hair Stylist Agra, Salon Near Me"
     />
     <meta name="author" content="Lumx Salon Agra" />
     <meta name="robots" content="index, follow" />
+    <meta name="geo.region" content="IN-UP" />
+    <meta name="geo.placename" content="Agra" />
+    <meta name="geo.position" content="27.1767;78.0081" />
+    <meta name="ICBM" content="27.1767, 78.0081" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://luxm-salon-agra.vercel.app/" />
+    <meta property="og:site_name" content="Lumx Salon Agra" />
+    <meta property="og:locale" content="en_IN" />
     <meta
       property="og:title"
       content="Lumx Salon Agra | Haircut, Balayage, Keratin & Bridal Makeup"
@@ -36,9 +47,19 @@
       property="og:image"
       content="https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=1200&auto=format&fit=crop"
     />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Luxury salon interior at Lumx Salon Agra"
+    />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
+    <meta
+      property="twitter:url"
+      content="https://luxm-salon-agra.vercel.app/"
+    />
     <meta
       property="twitter:title"
       content="Lumx Salon Agra | Haircut, Balayage, Keratin & Bridal Makeup"
@@ -64,96 +85,224 @@
     />
 
     <script type="application/ld+json">
-      [
-        {
-          "@context": "https://schema.org",
-          "@type": "BeautySalon",
-          "name": "Lumx Salon Agra",
-          "image": "https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=1200&auto=format&fit=crop",
-          "url": "https://luxm-salon-agra.vercel.app/",
-          "telephone": "+91-9876543210",
-          "priceRange": "$$",
-          "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "Agra Main Market",
-            "addressLocality": "Agra",
-            "addressRegion": "UP",
-            "postalCode": "282001",
-            "addressCountry": "IN"
-          },
-          "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": 27.1767,
-            "longitude": 78.0081
-          },
-          "openingHoursSpecification": [
-            {
-              "@type": "OpeningHoursSpecification",
-              "dayOfWeek": [
-                "Monday",
-                "Tuesday",
-                "Wednesday",
-                "Thursday",
-                "Friday",
-                "Saturday",
-                "Sunday"
-              ],
-              "opens": "09:00",
-              "closes": "20:00"
-            }
-          ],
-          "sameAs": [
-            "https://www.facebook.com/lumxsalonagra",
-            "https://www.instagram.com/lumxsalonagra"
-          ],
-          "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "4.9",
-            "reviewCount": "128"
-          }
-        },
-        {
-          "@context": "https://schema.org",
-          "@type": "WebSite",
-          "name": "Lumx Salon Agra",
-          "url": "https://luxm-salon-agra.vercel.app/",
-          "potentialAction": {
-            "@type": "SearchAction",
-            "target": "https://luxm-salon-agra.vercel.app/?s={search_term_string}",
-            "query-input": "required name=search_term_string"
-          }
-        },
-        {
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          "mainEntity": [
-            {
-              "@type": "Question",
-              "name": "What are your business hours?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "We are open Monday through Sunday from 9:00 AM to 8:00 PM."
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "BeautySalon",
+            "@id": "https://luxm-salon-agra.vercel.app/#organization",
+            "name": "Lumx Salon Agra",
+            "alternateName": "Lumx Hair & Beauty Salon",
+            "description": "Lumx Salon Agra is a luxury beauty and hair salon located near the Taj Mahal in Agra, Uttar Pradesh, India. We offer premium haircuts, balayage, keratin treatments, and bridal makeup services.",
+            "knowsAbout": [
+              "Hairdressing",
+              "Cosmetology",
+              "Bridal Makeup",
+              "Balayage",
+              "Keratin Treatment",
+              "Hair Coloring",
+              "Skin Care"
+            ],
+            "image": "https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=1200&auto=format&fit=crop",
+            "url": "https://luxm-salon-agra.vercel.app/",
+            "telephone": "+91-9876543210",
+            "email": "hello@lumxsalon.in",
+            "priceRange": "$$",
+            "areaServed": [
+              {
+                "@type": "City",
+                "name": "Agra"
+              },
+              {
+                "@type": "State",
+                "name": "Uttar Pradesh"
               }
+            ],
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Near Taj Mahal",
+              "addressLocality": "Agra",
+              "addressRegion": "Uttar Pradesh",
+              "postalCode": "282001",
+              "addressCountry": "IN"
             },
-            {
-              "@type": "Question",
-              "name": "Do you offer bridal makeup services?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Yes, we specialize in luxury bridal makeup and pre-bridal packages in Agra."
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": 27.1767,
+              "longitude": 78.0081
+            },
+            "openingHoursSpecification": [
+              {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": [
+                  "Monday",
+                  "Tuesday",
+                  "Wednesday",
+                  "Thursday",
+                  "Friday",
+                  "Saturday",
+                  "Sunday"
+                ],
+                "opens": "09:00",
+                "closes": "20:00"
               }
+            ],
+            "sameAs": [
+              "https://www.facebook.com/lumxsalonagra",
+              "https://www.instagram.com/lumxsalonagra",
+              "https://twitter.com/lumxsalonagra",
+              "https://en.wikipedia.org/wiki/Beauty_salon",
+              "https://www.wikidata.org/wiki/Q1135760"
+            ],
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": "4.9",
+              "reviewCount": "128"
+            },
+            "hasOfferCatalog": {
+              "@type": "OfferCatalog",
+              "name": "Salon Services",
+              "itemListElement": [
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Luxury Haircuts & Styling"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Balayage & Hair Color"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Keratin & Spa Treatments"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Bridal & Event Makeup"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Facials & Skin Care"
+                  }
+                }
+              ]
             }
-          ]
-        }
-      ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://luxm-salon-agra.vercel.app/#website",
+            "url": "https://luxm-salon-agra.vercel.app/",
+            "name": "Lumx Salon Agra",
+            "publisher": {
+              "@id": "https://luxm-salon-agra.vercel.app/#organization"
+            },
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": "https://luxm-salon-agra.vercel.app/?s={search_term_string}",
+              "query-input": "required name=search_term_string"
+            }
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://luxm-salon-agra.vercel.app/#webpage",
+            "url": "https://luxm-salon-agra.vercel.app/",
+            "name": "Lumx Salon Agra | Haircut, Balayage, Keratin & Bridal Makeup",
+            "isPartOf": {
+              "@id": "https://luxm-salon-agra.vercel.app/#website"
+            },
+            "about": {
+              "@id": "https://luxm-salon-agra.vercel.app/#organization"
+            },
+            "description": "Lumx Salon Agra offers premium haircuts, balayage, highlights, keratin treatments, men's grooming, and bridal makeup services. Book today."
+          },
+          {
+            "@type": "FAQPage",
+            "@id": "https://luxm-salon-agra.vercel.app/#faq",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What are your business hours?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "We are open Monday through Sunday from 9:00 AM to 8:00 PM."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Do you offer bridal makeup services in Agra?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes, we specialize in luxury bridal makeup and pre-bridal packages in Agra. Our expert makeup artists ensure you look perfect for your big day."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What hair treatments do you offer?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "We offer balayage, highlights, keratin treatments, hair smoothening, hair spa, and premium men's and women's haircuts."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Are you the best beauty salon near me in Agra?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Lumx Salon Agra is highly rated as one of the best beauty and hair salons in Agra, located conveniently near the Taj Mahal. We offer a luxury experience with top-tier stylists."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Do you offer facials and skin care services in Agra?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes, our beauty salon in Agra provides premium facials and advanced skin care treatments tailored to your skin type."
+                }
+              }
+            ]
+          }
+        ]
+      }
     </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
+      rel="preload"
+      as="image"
+      href="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&q=80&w=2000"
+      fetchpriority="high"
+    />
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap"
+    />
+    <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap"
       rel="stylesheet"
+      media="print"
+      onload="this.media = 'all'"
     />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
   </head>
   <body>
     <div id="root"></div>

@@ -1,0 +1,16 @@
+{
+  "name": "Lumx Salon Agra",
+  "short_name": "Lumx Salon",
+  "description": "Lumx Salon Agra offers premium haircuts, balayage, highlights, keratin treatments, men's grooming, and bridal makeup services. Book today.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1C1917",
+  "icons": [
+    {
+      "src": "/logo.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml"
+    }
+  ]
+}

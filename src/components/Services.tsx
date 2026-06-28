@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "motion/react";
 import { services } from "../lib/data";
 
-export default function Services() {
+export default React.memo(function Services() {
   return (
     <section id="services" className="py-24 bg-[#F5F0EB]">
       <div className="max-w-7xl mx-auto px-6">
@@ -36,27 +36,38 @@ export default function Services() {
               viewport={{ once: false, amount: 0.2 }}
               transition={{ delay: index * 0.1 }}
               className="bg-white border border-gray-100 shadow-sm hover:shadow-md transition-shadow group rounded-sm overflow-hidden flex flex-col"
+              itemScope
+              itemType="https://schema.org/Service"
             >
+              <meta itemProp="provider" content="Lumx Salon Agra" />
               <div className="h-48 w-full overflow-hidden">
                 <img
+                  itemProp="image"
                   src={service.image}
-                  alt={service.title}
+                  alt={`${service.title} at Lumx Salon Agra`}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   loading="lazy"
+                  decoding="async"
                   referrerPolicy="no-referrer"
                 />
               </div>
               <div className="p-6 md:p-8 flex flex-col flex-grow justify-between">
                 <div>
                   <div className="flex justify-between items-start mb-4">
-                    <h3 className="font-serif text-xl text-[#1C1917] pr-2">
+                    <h3
+                      className="font-serif text-xl text-[#1C1917] pr-2"
+                      itemProp="name"
+                    >
                       {service.title}
                     </h3>
                     <span className="text-[#C4A47C] font-medium shrink-0">
                       {service.price}
                     </span>
                   </div>
-                  <p className="text-sm text-gray-500 mb-6 leading-relaxed">
+                  <p
+                    className="text-sm text-gray-500 mb-6 leading-relaxed"
+                    itemProp="description"
+                  >
                     {service.description}
                   </p>
                 </div>
@@ -83,4 +94,4 @@ export default function Services() {
       </div>
     </section>
   );
-}
+});

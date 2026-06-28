@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "motion/react";
 
-export default function Hero() {
+export default React.memo(function Hero() {
   return (
     <section className="relative h-screen flex border-black items-center justify-center overflow-hidden">
       {/* Background Image with Overlay */}
@@ -11,6 +11,8 @@ export default function Hero() {
           backgroundImage:
             'url("https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&q=80&w=2000")',
         }}
+        role="img"
+        aria-label="Luxury salon interior at Lumx Salon Agra"
       >
         <div className="absolute inset-0 bg-black/50"></div>
       </div>
@@ -34,8 +36,8 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="font-serif text-5xl md:text-7xl lg:text-7xl text-white mb-8 leading-tight"
         >
-          Lumx Salon Agra – <br />
-          Premium Unisex Salon
+          Lumx Salon Agra – Premium <br />
+          Unisex Salon
         </motion.h1>
 
         <motion.div
@@ -46,6 +48,7 @@ export default function Hero() {
         >
           <a
             href="#booking"
+            aria-label="Reserve your time for an appointment"
             className="inline-block bg-[#C4A47C] text-white px-10 py-4 font-medium tracking-wide hover:bg-[#A68A66] transition-colors rounded-sm"
           >
             RESERVE YOUR TIME
@@ -73,4 +76,4 @@ export default function Hero() {
       </motion.div>
     </section>
   );
-}
+});

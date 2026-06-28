@@ -33,55 +33,57 @@ const formatDate = (createdAt: any, defaultDate: string) => {
   }
 };
 
-const ReviewCard = ({ review, index }: { review: any; index: number }) => {
-  const [isExpanded, setIsExpanded] = useState(false);
-  const isLong = review.text.length > 120;
+const ReviewCard = React.memo(
+  ({ review, index }: { review: any; index: number }) => {
+    const [isExpanded, setIsExpanded] = useState(false);
+    const isLong = review.text.length > 120;
 
-  const displayDate = review.createdAt
-    ? formatDate(review.createdAt, review.date || "")
-    : review.date || "Just now";
+    const displayDate = review.createdAt
+      ? formatDate(review.createdAt, review.date || "")
+      : review.date || "Just now";
 
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: false, amount: 0.2 }}
-      transition={{ delay: (index % 3) * 0.1 }}
-      className="bg-[#24211F] p-8 rounded-sm flex flex-col min-w-[300px] md:min-w-[350px] flex-shrink-0 snap-center"
-    >
-      <div className="flex gap-1 mb-6">
-        {[...Array(review.rating)].map((_, i) => (
-          <Star key={i} className="w-4 h-4 fill-[#C4A47C] text-[#C4A47C]" />
-        ))}
-      </div>
-      <div className="flex-grow mb-8">
-        <p className="text-gray-300 italic">
-          "
-          {isExpanded || !isLong
-            ? review.text
-            : `${review.text.substring(0, 120)}...`}
-          "
-        </p>
-        {isLong && (
-          <button
-            onClick={() => setIsExpanded(!isExpanded)}
-            className="text-[#C4A47C] hover:text-white mt-2 text-sm uppercase tracking-wider text-left transition-colors"
-          >
-            {isExpanded ? "Read Less" : "Read More"}
-          </button>
-        )}
-      </div>
-      <div>
-        <p className="font-serif text-lg">{review.name}</p>
-        <p className="text-xs text-gray-500 mt-1 uppercase tracking-wide">
-          {displayDate}
-        </p>
-      </div>
-    </motion.div>
-  );
-};
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: false, amount: 0.2 }}
+        transition={{ delay: (index % 3) * 0.1 }}
+        className="bg-[#24211F] p-8 rounded-sm flex flex-col min-w-[300px] md:min-w-[350px] flex-shrink-0 snap-center"
+      >
+        <div className="flex gap-1 mb-6">
+          {[...Array(review.rating)].map((_, i) => (
+            <Star key={i} className="w-4 h-4 fill-[#C4A47C] text-[#C4A47C]" />
+          ))}
+        </div>
+        <div className="flex-grow mb-8">
+          <p className="text-gray-300 italic">
+            "
+            {isExpanded || !isLong
+              ? review.text
+              : `${review.text.substring(0, 120)}...`}
+            "
+          </p>
+          {isLong && (
+            <button
+              onClick={() => setIsExpanded(!isExpanded)}
+              className="text-[#C4A47C] hover:text-white mt-2 text-sm uppercase tracking-wider text-left transition-colors"
+            >
+              {isExpanded ? "Read Less" : "Read More"}
+            </button>
+          )}
+        </div>
+        <div>
+          <p className="font-serif text-lg">{review.name}</p>
+          <p className="text-xs text-gray-500 mt-1 uppercase tracking-wide">
+            {displayDate}
+          </p>
+        </div>
+      </motion.div>
+    );
+  },
+);
 
-export default function Reviews() {
+export default React.memo(function Reviews() {
   const [reviews, setReviews] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -283,6 +285,7 @@ export default function Reviews() {
                 <button
                   onClick={() => setIsModalOpen(false)}
                   className="absolute top-3 right-3 w-8 h-8 flex items-center justify-center rounded-full bg-white text-gray-500 hover:text-black hover:bg-gray-100 transition-colors"
+                  aria-label="Close modal"
                 >
                   ✕
                 </button>
@@ -300,17 +303,22 @@ export default function Reviews() {
                       Share Your Experience
                     </h3>
                     <p className="text-center text-sm text-gray-500 mb-6 md:mb-8">
-                      We would love to hear about your experience at Lumx Salon Agra.
+                      We would love to hear about your experience at Lumx Salon
+                      Agra.
                     </p>
                     <form
                       onSubmit={submitReview}
                       className="space-y-4 md:space-y-6"
                     >
                       <div>
-                        <label className="block text-xs font-medium uppercase tracking-widest text-gray-500 mb-1 md:mb-2">
+                        <label
+                          htmlFor="review-name"
+                          className="block text-xs font-medium uppercase tracking-widest text-gray-500 mb-1 md:mb-2"
+                        >
                           Your Name
                         </label>
                         <input
+                          id="review-name"
                           required
                           type="text"
                           value={formData.name}
@@ -322,10 +330,14 @@ export default function Reviews() {
                         />
                       </div>
                       <div>
-                        <label className="block text-xs font-medium uppercase tracking-widest text-gray-500 mb-1 md:mb-2">
+                        <label
+                          htmlFor="review-rating"
+                          className="block text-xs font-medium uppercase tracking-widest text-gray-500 mb-1 md:mb-2"
+                        >
                           Rating
                         </label>
                         <select
+                          id="review-rating"
                           value={formData.rating}
                           onChange={(e) =>
                             setFormData({
@@ -343,10 +355,14 @@ export default function Reviews() {
                         </select>
                       </div>
                       <div>
-                        <label className="block text-xs font-medium uppercase tracking-widest text-gray-500 mb-1 md:mb-2">
+                        <label
+                          htmlFor="review-text"
+                          className="block text-xs font-medium uppercase tracking-widest text-gray-500 mb-1 md:mb-2"
+                        >
                           Your Review
                         </label>
                         <textarea
+                          id="review-text"
                           required
                           rows={3}
                           value={formData.text}
@@ -373,4 +389,4 @@ export default function Reviews() {
       </div>
     </section>
   );
-}
+});

@@ -1,13 +1,17 @@
 import React from "react";
 import { Scissors } from "lucide-react";
 
-export default function Footer() {
+export default React.memo(function Footer() {
   return (
     <footer className="bg-[#1C1917] pt-16 pb-8 text-white">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-center border-b border-gray-800 pb-12 mb-8 gap-8 text-center md:text-left">
           <div className="flex flex-col items-center md:items-start">
-            <a href="#" className="flex items-center gap-2 mb-4">
+            <a
+              href="#"
+              aria-label="Lumx Salon Agra Home"
+              className="flex items-center gap-2 mb-4"
+            >
               <Scissors className="w-5 h-5 text-[#C4A47C]" />
               <span className="font-serif text-xl font-bold tracking-wider">
                 LUMX
@@ -22,6 +26,8 @@ export default function Footer() {
           <div className="flex gap-6">
             <a
               href="https://instagram.com/lumxsalonagra"
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label="Follow us on Instagram"
               className="w-10 h-10 rounded-full border border-gray-800 flex items-center justify-center hover:bg-[#C4A47C] hover:border-[#C4A47C] transition-colors"
             >
@@ -29,6 +35,8 @@ export default function Footer() {
             </a>
             <a
               href="https://facebook.com/lumxsalonagra"
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label="Follow us on Facebook"
               className="w-10 h-10 rounded-full border border-gray-800 flex items-center justify-center hover:bg-[#C4A47C] hover:border-[#C4A47C] transition-colors"
             >
@@ -36,6 +44,8 @@ export default function Footer() {
             </a>
             <a
               href="https://twitter.com/lumxsalonagra"
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label="Follow us on X"
               className="w-10 h-10 rounded-full border border-gray-800 flex items-center justify-center hover:bg-[#C4A47C] hover:border-[#C4A47C] transition-colors"
             >
@@ -46,7 +56,8 @@ export default function Footer() {
 
         <div className="flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 uppercase tracking-widest gap-4">
           <p>
-            &copy; {new Date().getFullYear()} Lumx Salon Agra. All rights reserved.
+            &copy; {new Date().getFullYear()} Lumx Salon Agra. All rights
+            reserved.
           </p>
           <div className="flex gap-6">
             <a href="#" className="hover:text-white transition-colors">
@@ -60,4 +71,4 @@ export default function Footer() {
       </div>
     </footer>
   );
-}
+});

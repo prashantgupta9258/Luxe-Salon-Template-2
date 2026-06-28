@@ -14,7 +14,7 @@ import {
   onSnapshot,
 } from "firebase/firestore";
 
-export default function Contact() {
+export default React.memo(function Contact() {
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -476,27 +476,41 @@ export default function Contact() {
             viewport={{ once: false, amount: 0.2 }}
             className="flex flex-col"
             id="contact"
+            itemScope
+            itemType="https://schema.org/BeautySalon"
           >
             <div className="mb-8 p-8 bg-[#F5F0EB] text-[#1C1917] rounded-sm">
-              <h3 className="font-serif text-2xl mb-6">Salon Details</h3>
+              <h3 className="font-serif text-2xl mb-6" itemProp="name">
+                Lumx Salon Agra
+              </h3>
               <div className="space-y-4">
-                <div className="flex items-start gap-4">
+                <div
+                  className="flex items-start gap-4"
+                  itemProp="address"
+                  itemScope
+                  itemType="https://schema.org/PostalAddress"
+                >
                   <MapPin className="text-[#C4A47C] w-5 h-5 shrink-0 mt-1" />
                   <p className="text-sm">
-                    Lumx Salon Agra
+                    <span itemProp="streetAddress">Near Taj Mahal, Agra</span>
                     <br />
-                    Near Taj Mahal, Agra
-                    <br />
-                    Uttar Pradesh 282001, India
+                    <span itemProp="addressLocality">Agra</span>,{" "}
+                    <span itemProp="addressRegion">Uttar Pradesh</span>{" "}
+                    <span itemProp="postalCode">282001</span>,{" "}
+                    <span itemProp="addressCountry">India</span>
                   </p>
                 </div>
                 <div className="flex items-center gap-4">
                   <Phone className="text-[#C4A47C] w-5 h-5 shrink-0" />
-                  <p className="text-sm">+91 98765 43210</p>
+                  <p className="text-sm" itemProp="telephone">
+                    +91 98765 43210
+                  </p>
                 </div>
                 <div className="flex items-center gap-4">
                   <Mail className="text-[#C4A47C] w-5 h-5 shrink-0" />
-                  <p className="text-sm">hello@lumxsalon.in</p>
+                  <p className="text-sm" itemProp="email">
+                    hello@lumxsalon.in
+                  </p>
                 </div>
                 <div className="flex items-start gap-4 pt-4 border-t border-gray-300/50 mt-4">
                   <Clock className="text-[#C4A47C] w-5 h-5 shrink-0 mt-1" />
@@ -573,4 +587,4 @@ export default function Contact() {
       </div>
     </section>
   );
-}
+});
