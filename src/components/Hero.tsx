@@ -34,8 +34,8 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="font-serif text-5xl md:text-7xl lg:text-7xl text-white mb-8 leading-tight"
         >
-          Lumx Salon Agra – Premium <br className="hidden md:block" /> Unisex
-          Salon
+          Lumx Salon Agra – <br />
+          Premium Unisex Salon
         </motion.h1>
 
         <motion.div
