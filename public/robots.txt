@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /admin
 
-Sitemap: https://luxe-salon-template-2.vercel.app/sitemap.xml
+Sitemap: https://luxm-salon-agra.vercel.app/sitemap.xml

@@ -3,12 +3,12 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState, useEffect, lazy, Suspense } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { motion, AnimatePresence } from 'motion/react';
-import Home from './pages/Home';
+import React, { useState, useEffect, lazy, Suspense } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { motion, AnimatePresence } from "motion/react";
+import Home from "./pages/Home";
 
-const Admin = lazy(() => import('./pages/Admin'));
+const Admin = lazy(() => import("./pages/Admin"));
 
 function InitialLoader() {
   return (
@@ -24,7 +24,7 @@ function InitialLoader() {
         transition={{ duration: 1.5, ease: "easeOut" }}
         className="text-center"
       >
-        <motion.h1 
+        <motion.h1
           className="text-4xl md:text-6xl font-serif text-[#F5F0EB] tracking-widest uppercase"
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -32,7 +32,7 @@ function InitialLoader() {
         >
           Luxm
         </motion.h1>
-        <motion.div 
+        <motion.div
           className="h-[1px] bg-[#C4A47C] mx-auto mt-4"
           initial={{ width: 0 }}
           animate={{ width: "100%" }}
@@ -68,11 +68,14 @@ export default function App() {
       </AnimatePresence>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/admin" element={
-          <Suspense fallback={<div>Loading...</div>}>
-            <Admin />
-          </Suspense>
-        } />
+        <Route
+          path="/admin"
+          element={
+            <Suspense fallback={<div>Loading...</div>}>
+              <Admin />
+            </Suspense>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
