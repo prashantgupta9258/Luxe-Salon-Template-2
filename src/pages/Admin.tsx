@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Calendar, MessageSquare, Download, Trash, Check, LogOut } from 'lucide-react';
+import { Calendar, MessageSquare, Download, Trash, Check, LogOut, Settings } from 'lucide-react';
 import { motion } from 'motion/react';
 import { auth, db } from '../lib/firebase';
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged } from 'firebase/auth';
 import { collection, query, orderBy, getDocs, deleteDoc, doc, updateDoc } from 'firebase/firestore';
+
+import AdminSettings from '../components/AdminSettings';
 
 export default function Admin() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -13,7 +15,7 @@ export default function Admin() {
   
   const [appointments, setAppointments] = useState<any[]>([]);
   const [reviews, setReviews] = useState<any[]>([]);
-  const [activeTab, setActiveTab] = useState<'appointments' | 'reviews'>('appointments');
+  const [activeTab, setActiveTab] = useState<'appointments' | 'reviews' | 'settings'>('appointments');
 
   const checkAuth = () => {
     onAuthStateChanged(auth, (user) => {
@@ -79,11 +81,13 @@ export default function Admin() {
     setIsAuthenticated(false);
   };
 
+  const [deleteConfirmId, setDeleteConfirmId] = useState<string | null>(null);
+
   const deleteAppointment = async (id: string) => {
-    if (!confirm('Delete appointment?')) return;
     try {
       await deleteDoc(doc(db, 'appointments', id));
       setAppointments(prev => prev.filter(app => app.id !== id));
+      setDeleteConfirmId(null);
     } catch(e) {}
   };
 
@@ -98,10 +102,12 @@ export default function Admin() {
     } catch(e) {}
   };
 
+  const [deleteReviewConfirmId, setDeleteReviewConfirmId] = useState<string | null>(null);
+
   const deleteReview = async (id: string) => {
-    if (!confirm('Delete review?')) return;
     try {
       await deleteDoc(doc(db, 'reviews', id));
+      setDeleteReviewConfirmId(null);
       fetchData();
     } catch(e) {}
   };
@@ -159,7 +165,23 @@ export default function Admin() {
             >
               <MessageSquare className="w-4 h-4" /> Reviews
             </button>
+            <button 
+              className={`pb-4 px-2 font-medium text-sm flex items-center gap-2 ${activeTab === 'settings' ? 'border-b-2 border-[#C4A47C] text-[#C4A47C]' : 'text-gray-500'}`}
+              onClick={() => setActiveTab('settings')}
+            >
+              <Settings className="w-4 h-4" /> Settings
+            </button>
           </div>
+
+          {activeTab === 'settings' && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <AdminSettings />
+            </motion.div>
+          )}
 
           {activeTab === 'appointments' && (
             <motion.div
@@ -206,9 +228,16 @@ export default function Admin() {
                           <td className="p-4">{app.service}</td>
                           <td className="p-4 max-w-xs truncate" title={app.notes}>{app.notes || '-'}</td>
                           <td className="p-4">
-                            <button onClick={() => deleteAppointment(app.id)} className="text-red-500 hover:bg-red-50 p-2 rounded transition-colors">
-                              <Trash className="w-4 h-4" />
-                            </button>
+                            {deleteConfirmId === app.id ? (
+                              <div className="flex items-center gap-2">
+                                <button onClick={() => deleteAppointment(app.id)} className="text-red-500 hover:text-red-700 text-xs font-medium">Confirm</button>
+                                <button onClick={() => setDeleteConfirmId(null)} className="text-gray-500 hover:text-gray-700 text-xs font-medium">Cancel</button>
+                              </div>
+                            ) : (
+                              <button onClick={() => setDeleteConfirmId(app.id)} className="text-red-500 hover:bg-red-50 p-2 rounded transition-colors">
+                                <Trash className="w-4 h-4" />
+                              </button>
+                            )}
                           </td>
                         </tr>
                       ))
@@ -274,9 +303,16 @@ export default function Admin() {
                               <Check className="w-4 h-4" />
                             </button>
                           )}
-                          <button onClick={() => deleteReview(rev.id)} className="p-2 text-red-600 hover:bg-red-50 rounded transition-colors" title="Delete">
-                            <Trash className="w-4 h-4" />
-                          </button>
+                          {deleteReviewConfirmId === rev.id ? (
+                            <div className="flex items-center gap-2">
+                              <button onClick={() => deleteReview(rev.id)} className="text-red-500 hover:text-red-700 text-xs font-medium">Confirm</button>
+                              <button onClick={() => setDeleteReviewConfirmId(null)} className="text-gray-500 hover:text-gray-700 text-xs font-medium">Cancel</button>
+                            </div>
+                          ) : (
+                            <button onClick={() => setDeleteReviewConfirmId(rev.id)} className="p-2 text-red-600 hover:bg-red-50 rounded transition-colors" title="Delete">
+                              <Trash className="w-4 h-4" />
+                            </button>
+                          )}
                         </div>
                       </div>
                     </motion.div>

@@ -4,6 +4,44 @@ import { Star } from 'lucide-react';
 import { db } from '../lib/firebase';
 import { collection, addDoc, serverTimestamp, query, where, orderBy, getDocs } from 'firebase/firestore';
 
+const ReviewCard = ({ review, index }: { review: any, index: number }) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const isLong = review.text.length > 120;
+
+  return (
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: false, amount: 0.2 }}
+      transition={{ delay: (index % 3) * 0.1 }}
+      className="bg-[#24211F] p-8 rounded-sm flex flex-col min-w-[300px] md:min-w-[350px] flex-shrink-0 snap-center"
+    >
+      <div className="flex gap-1 mb-6">
+        {[...Array(review.rating)].map((_, i) => (
+          <Star key={i} className="w-4 h-4 fill-[#C4A47C] text-[#C4A47C]" />
+        ))}
+      </div>
+      <div className="flex-grow mb-8">
+        <p className="text-gray-300 italic">
+          "{isExpanded || !isLong ? review.text : `${review.text.substring(0, 120)}...`}"
+        </p>
+        {isLong && (
+          <button 
+            onClick={() => setIsExpanded(!isExpanded)}
+            className="text-[#C4A47C] hover:text-white mt-2 text-sm uppercase tracking-wider text-left transition-colors"
+          >
+            {isExpanded ? 'Read Less' : 'Read More'}
+          </button>
+        )}
+      </div>
+      <div>
+        <p className="font-serif text-lg">{review.name}</p>
+        <p className="text-xs text-gray-500 mt-1 uppercase tracking-wide">{review.date}</p>
+      </div>
+    </motion.div>
+  );
+};
+
 export default function Reviews() {
   const [reviews, setReviews] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -27,7 +65,7 @@ export default function Reviews() {
         const storedRevs = JSON.parse(localStorage.getItem('luxm_reviews') || '[]');
         if (storedRevs.length === 0) {
            const initial = [
-             { id: "1", name: "Sarah Jenkins", text: "Absolutely the best salon experience I've ever had.", rating: 5, date: "2 weeks ago", approved: true },
+             { id: "1", name: "Sarah Jenkins", text: "Absolutely the best salon experience I've ever had. The staff was incredibly welcoming, the ambiance was perfectly relaxing, and the results were beyond my expectations. I will definitely be coming back and recommending Luxm to all my friends! They really take the time to understand what you want.", rating: 5, date: "2 weeks ago", approved: true },
              { id: "2", name: "Emily Rodriguez", text: "A beautiful, relaxing environment.", rating: 5, date: "1 month ago", approved: true },
              { id: "3", name: "Mia Thompson", text: "So impressed with the attention to detail.", rating: 5, date: "2 months ago", approved: true },
            ];
@@ -127,27 +165,7 @@ export default function Reviews() {
         ) : (
           <div className="flex overflow-x-auto gap-8 pb-8 snap-x scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
             {reviews.map((review, index) => (
-              <motion.div 
-                key={review.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false, amount: 0.2 }}
-                transition={{ delay: (index % 3) * 0.1 }}
-                className="bg-[#24211F] p-8 rounded-sm flex flex-col min-w-[300px] md:min-w-[350px] flex-shrink-0 snap-center"
-              >
-                <div className="flex gap-1 mb-6">
-                  {[...Array(review.rating)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-[#C4A47C] text-[#C4A47C]" />
-                  ))}
-                </div>
-                <p className="text-gray-300 italic mb-8 flex-grow">
-                  "{review.text}"
-                </p>
-                <div>
-                  <p className="font-serif text-lg">{review.name}</p>
-                  <p className="text-xs text-gray-500 mt-1 uppercase tracking-wide">{review.date}</p>
-                </div>
-              </motion.div>
+              <ReviewCard key={review.id} review={review} index={index} />
             ))}
           </div>
         )}
